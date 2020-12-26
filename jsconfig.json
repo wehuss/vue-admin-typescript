@@ -1,0 +1,12 @@
+{
+	"compilerOptions": {
+		// 基本目录，用于解析非相对模块名称
+		"baseUrl": "./",
+		// 路径映射
+		"paths": {
+			"@/*": ["src/*"]
+		}
+	},
+	// 忽略
+	"exclude": ["node_modules", "dist"]
+}
