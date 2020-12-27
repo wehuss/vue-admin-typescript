@@ -145,6 +145,7 @@ module.exports = {
     }],
     'no-unreachable': 2,
     'no-unsafe-finally': 2,
+    'no-unused-vars':0,
     // 解决导入interface并使用后提示:'XXXXInterface' is defined but never used
     '@typescript-eslint/no-unused-vars': [1],
     // 返回类型非必要

@@ -41,7 +41,7 @@ const actions = {
   }
 }
 
-const App:Module<Vuex.App, Vuex.Store> = {
+const App:Module<Vuex.App, Vuex.Vuex> = {
   namespaced: true,
   state,
   mutations,
