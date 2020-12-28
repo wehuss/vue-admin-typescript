@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    layout
+    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <app-main />
   </div>
 </template>
@@ -20,6 +20,8 @@ export default {
   setup() {
     const store = useGetStore()
 
+    const device = store.getters.device
+
     const resizeHandler = throttle(() => {
       const _isMobile = body.getBoundingClientRect().width < WIDTH
       store.dispatch('app/toggleDevice', _isMobile ? 'mobile' : 'desktop')
@@ -28,6 +30,11 @@ export default {
       }
     }, 200)
 
+    const handleClickOutside = () => {
+      console.log('click')
+      store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    }
+
     onBeforeMount(() => {
       resizeHandler()
       window.addEventListener('resize', resizeHandler)
@@ -35,6 +42,11 @@ export default {
     onBeforeUnmount(() => {
       window.removeEventListener('resize', resizeHandler)
     })
+
+    return {
+      handleClickOutside,
+      device
+    }
   }
 }
 </script>
@@ -52,6 +64,7 @@ export default {
     top: 0;
   }
 }
+// 移动端菜单抽屉浮层
 .drawer-bg {
   background: #000;
   opacity: 0.3;
