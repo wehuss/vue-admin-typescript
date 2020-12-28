@@ -3,7 +3,23 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Home',
+    redirect: '/index',
+    component: () => import('../layout/index.vue')
+  },
+  {
+    path: '/index',
+    name: 'index',
+    meta: {
+      title: '首页'
+    },
+    component: () => import('../layout/index.vue')
+  },
+  {
+    path: '/test',
+    name: 'test',
+    meta: {
+      title: 'test'
+    },
     component: () => import('../layout/index.vue')
   }
   // {

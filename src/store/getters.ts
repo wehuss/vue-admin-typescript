@@ -4,7 +4,9 @@
 
 const getters = {
   sidebar: (state: Vuex.Vuex) => state.app.sidebar,
-  device: (state: Vuex.Vuex) => state.app.device
+  device: (state: Vuex.Vuex) => state.app.device,
+  fixedHeader: (state: Vuex.Vuex) => state.settings.fixedHeader,
+  sidebarLogo: (state: Vuex.Vuex) => state.settings.sidebarLogo
 //   sidebar: _getters('app', 'sidebar'),
 //   device: _getters('app', 'device')
 }

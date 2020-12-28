@@ -2,14 +2,13 @@
   <section class="app-main">
     <router-view :key="key" v-slot="{ Component }">
       <transition name="fade-transform" mode="out-in">
-        <!-- <router-view :key="key" /> -->
         <component :is="Component" />
       </transition>
     </router-view>
   </section>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from 'vue'
 
 export default defineComponent({

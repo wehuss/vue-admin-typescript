@@ -7,7 +7,13 @@ declare namespace Vuex {
         device: string;
     }
 
+    export interface Settings {
+        fixedHeader:boolean;
+        sidebarLogo:boolean;
+    }
+
     export interface Vuex {
         app: App;
+        settings:Settings
     }
 }
