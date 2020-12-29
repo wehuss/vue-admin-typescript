@@ -7,8 +7,11 @@
  * @returns {Boolean}
  */
 export function isExternal(path:string) {
-  return /^(https?:|mailto:|tel:)/.test(path)
+  return /^(https?:|mailto:|tel:)/.test(path.substr(1))
 }
+// export function isExternal(path:string) {
+//   return /^(https?:|mailto:|tel:)/.test(path)
+// }
 
 /**
  * @param {string} str

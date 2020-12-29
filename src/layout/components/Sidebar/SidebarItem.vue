@@ -55,8 +55,7 @@ import {
   defineComponent,
   reactive,
   onMounted,
-  shallowRef,
-  onBeforeMount
+  shallowRef
 } from 'vue'
 import path from 'path'
 import { isExternal } from '@/utils/validate'
@@ -93,17 +92,8 @@ export default defineComponent({
     const data = reactive<Data>({
       onlyOneChild: null
     })
-    const routeItem = reactive<RouteRecordRaw>({
-      ...(props.item as RouteRecordRaw)
-    })
     const menuRef = shallowRef<null | SubMenuProvider>(null)
     const device: string = useGetStore().getters.device
-
-    onBeforeMount(() => {
-      if (!routeItem?.children) {
-        routeItem.children = []
-      }
-    })
 
     onMounted(() => {
       if (menuRef.value) {
@@ -160,7 +150,6 @@ export default defineComponent({
     }
 
     return {
-      routeItem,
       data,
       hasOneShowingChild,
       resolvePath

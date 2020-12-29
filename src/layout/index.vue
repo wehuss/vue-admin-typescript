@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { onMounted, onBeforeUnmount, computed, watch } from 'vue'
+import { onMounted, onBeforeUnmount, computed } from 'vue'
 import { AppMain, Navbar, Sidebar } from './components'
 import { useGetStore } from '@/utils/hooks'
 import { throttle } from '@/utils/utils'

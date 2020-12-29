@@ -16,12 +16,13 @@ export default defineComponent({
     }
   },
   setup(props) {
+    console.log('props', props, isExternal(props.to))
     const external = computed(() => isExternal(props.to))
     const type = computed(() => (external.value ? 'a' : 'router-link'))
     const linkProps = (to: string) => {
       if (external.value) {
         return {
-          href: to,
+          href: to.substr(1),
           target: '_blank',
           rel: 'noopener'
         }

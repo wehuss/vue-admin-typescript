@@ -23,6 +23,17 @@ const routes: Array<RouteRecordRaw> = [
       icon: 's-custom'
     },
     component: () => import('../layout/index.vue')
+  },
+  {
+    // Uncaught Error: Route paths should start with a "/"
+    // 路径必须以/"开头，暂未找到解决方法,所以外部链接暂时以"/"开头再手动裁切
+    path: '/https://element-plus.gitee.io/#/zh-CN/component/menu',
+    name: 'element-plus',
+    meta: {
+      title: 'element-plus',
+      icon: 'share'
+    },
+    component: () => import('../layout/index.vue')
   }
   // {
   // 	path: '/about',
