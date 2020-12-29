@@ -11,7 +11,6 @@
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
-        @open="test"
       >
         <sidebar-item
           v-for="route in routes"
@@ -25,7 +24,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, computed, watch } from 'vue'
+import { defineComponent, computed } from 'vue'
 import { useGetStore, useGetAllRouter } from '@/utils/hooks'
 import Logo from './Logo.vue'
 import SidebarItem from './SidebarItem.vue'
@@ -37,9 +36,6 @@ export default defineComponent({
     const store = useGetStore()
     const { route, router } = useGetAllRouter()
     const sidebar = store.getters.sidebar
-    watch(sidebar, () => {
-      console.log('opened change', sidebar)
-    })
     const showLogo: boolean = store.getters.sidebarLogo
     const routes = computed(() => router.options.routes)
     const activeMenu = computed(() => {

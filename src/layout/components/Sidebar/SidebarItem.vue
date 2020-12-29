@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!item?.hidden">
+  <div v-if="!item.hidden">
     <!-- 显示条件:如果没有子路由||只有一个子路由||设置alwaysShow为true -->
     <template
       v-if="
@@ -16,13 +16,12 @@
           :index="resolvePath(data.onlyOneChild.path)"
           :class="{ 'submenu-title-noDropdown': !isNest }"
         >
-          <item
-            :icon="
-              data.onlyOneChild.meta.icon ||
-                (item.meta && item.meta.icon)
-            "
-            :title="data.onlyOneChild.meta.title"
-          />
+          <el-icons v-if="item?.meta?.icon" :icon="item.meta.icon" />
+          <template #title>
+            <span v-if="item?.meta?.title">
+              {{ item.meta.title }}
+            </span>
+          </template>
         </el-menu-item>
       </app-link>
     </template>
@@ -33,12 +32,11 @@
       :index="resolvePath(item.path)"
       popper-append-to-body
     >
+      <el-icons v-if="item?.meta?.icon" icon="item.meta.icon" />
       <template #title>
-        <item
-          v-if="item.meta"
-          :icon="item.meta && item.meta.icon"
-          :title="item.meta.title"
-        />
+        <span v-if="item?.meta?.title">
+          {{ item.meta.title }}
+        </span>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -63,7 +61,7 @@ import {
 import path from 'path'
 import { isExternal } from '@/utils/validate'
 import { useGetStore } from '@/utils/hooks'
-import Item from './Item.vue'
+// import Item from './Item.vue'
 import AppLink from './Link.vue'
 import { RouteRecordRaw } from 'vue-router'
 import { SubMenuProvider } from 'element-plus/lib/el-menu/src/menu'
@@ -75,7 +73,7 @@ interface Data {
 
 export default defineComponent({
   name: 'SidebarItem',
-  components: { Item, AppLink },
+  components: { AppLink },
   props: {
     // route object
     item: {

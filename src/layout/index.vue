@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { onBeforeMount, onBeforeUnmount } from 'vue'
+import { onBeforeMount, onBeforeUnmount, computed } from 'vue'
 import { AppMain, Navbar, Sidebar } from './components'
 import { useGetStore } from '@/utils/hooks'
 import { throttle } from '@/utils/utils'
@@ -35,12 +35,19 @@ export default {
     const device = store.state.app.device // 当前视窗尺寸为桌面端还是移动端
     const sidebar = store.getters.sidebar // 侧边栏设置
     const fixedHeader = store.state.settings.fixedHeader // 是否固定头部
-    const classObj = {
+    // const classObj = reactive({
+    //   hideSidebar: !sidebar.opened,
+    //   openSidebar: sidebar.opened,
+    //   withoutAnimation: sidebar.withoutAnimation,
+    //   mobile: device === 'mobile'
+    // })
+
+    const classObj = computed(() => ({
       hideSidebar: !sidebar.opened,
       openSidebar: sidebar.opened,
       withoutAnimation: sidebar.withoutAnimation,
       mobile: device === 'mobile'
-    }
+    }))
 
     const resizeHandler = throttle(() => {
       const _isMobile = body.getBoundingClientRect().width < WIDTH
