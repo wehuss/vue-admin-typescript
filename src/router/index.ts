@@ -10,7 +10,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/index',
     name: 'index',
     meta: {
-      title: '首页'
+      title: '首页',
+      icon: 's-promotion'
     },
     component: () => import('../layout/index.vue')
   },
@@ -18,7 +19,8 @@ const routes: Array<RouteRecordRaw> = [
     path: '/test',
     name: 'test',
     meta: {
-      title: 'test'
+      title: 'test',
+      icon: 's-custom'
     },
     component: () => import('../layout/index.vue')
   }

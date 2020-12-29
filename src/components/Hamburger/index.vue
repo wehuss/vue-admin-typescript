@@ -1,6 +1,6 @@
 <template>
   <div style="padding: 0 15px" @click="toggleClick">
-    <el-icon
+    <el-icons
       icon="s-fold"
       :size="20"
       class="hamburger"

@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import ElementPlus from 'element-plus'
-import ElIcon from '@/components/ElIcon/index.vue'
+import ElIcons from '@/components/ElIcons/index.vue'
 import router from './router'
 import { store, key } from './store'
 
@@ -13,5 +13,5 @@ createApp(App)
   .use(router)
   .use(store, key)
   .use(ElementPlus)
-  .component('ElIcon', ElIcon)
+  .component('ElIcons', ElIcons)
   .mount('#app')

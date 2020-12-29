@@ -6,7 +6,7 @@ import { defineComponent } from 'vue'
 
 // 简单封装element-icon
 export default defineComponent({
-  name: 'ElIcon',
+  name: 'ElIcons',
   props: {
     icon: {
       type: String,

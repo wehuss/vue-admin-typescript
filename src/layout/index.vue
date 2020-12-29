@@ -5,6 +5,7 @@
       class="drawer-bg"
       @click="handleClickOutside"
     />
+    <Sidebar class="sidebar-container" />
     <div class="main-container">
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
@@ -15,7 +16,7 @@
 </template>
 <script lang="ts">
 import { onBeforeMount, onBeforeUnmount } from 'vue'
-import { AppMain, Navbar } from './components'
+import { AppMain, Navbar, Sidebar } from './components'
 import { useGetStore } from '@/utils/hooks'
 import { throttle } from '@/utils/utils'
 
@@ -25,13 +26,14 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 export default {
   components: {
     AppMain,
-    Navbar
+    Navbar,
+    Sidebar
   },
   setup() {
     const store = useGetStore()
 
     const device = store.state.app.device // 当前视窗尺寸为桌面端还是移动端
-    const sidebar = store.state.app.sidebar // 侧边栏设置
+    const sidebar = store.getters.sidebar // 侧边栏设置
     const fixedHeader = store.state.settings.fixedHeader // 是否固定头部
     const classObj = {
       hideSidebar: !sidebar.opened,

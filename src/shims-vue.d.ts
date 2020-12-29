@@ -1,16 +1,17 @@
-// import type { Store } from 'vuex'
-// import type { Router } from 'vue-router'
-
 declare module '*.vue' {
   import type { DefineComponent } from 'vue'
   const component: DefineComponent<{}, {}, any>
   export default component
 }
 
-// declare module '@vue/runtime-core' {
+declare module '*.scss' {
+  const classes: { readonly [key: string]: string }
+  export default classes
+}
 
-//   interface ComponentCustomProperties {
-//     $store: Store<Vuex>;
-//     $router: Router;
+// declare module 'vue-router' {
+
+//   export declare interface _RouteRecordBase {
+//     hidden?:boolean;
 //   }
 // }
