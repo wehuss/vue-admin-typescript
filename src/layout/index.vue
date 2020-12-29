@@ -15,7 +15,7 @@
   </div>
 </template>
 <script lang="ts">
-import { onBeforeMount, onBeforeUnmount, computed } from 'vue'
+import { onMounted, onBeforeUnmount, computed, watch } from 'vue'
 import { AppMain, Navbar, Sidebar } from './components'
 import { useGetStore } from '@/utils/hooks'
 import { throttle } from '@/utils/utils'
@@ -32,21 +32,19 @@ export default {
   setup() {
     const store = useGetStore()
 
-    const device = store.state.app.device // 当前视窗尺寸为桌面端还是移动端
+    // 直接引用基本类型没有响应性
+    const device = computed(() => store.getters.device) // 当前视窗尺寸为桌面端还是移动端
     const sidebar = store.getters.sidebar // 侧边栏设置
     const fixedHeader = store.state.settings.fixedHeader // 是否固定头部
-    // const classObj = reactive({
-    //   hideSidebar: !sidebar.opened,
-    //   openSidebar: sidebar.opened,
-    //   withoutAnimation: sidebar.withoutAnimation,
-    //   mobile: device === 'mobile'
-    // })
+
+    //              device->String                   sidebar->Proxy
+    // console.log('device', store.getters.device, 'sidebar', sidebar)
 
     const classObj = computed(() => ({
       hideSidebar: !sidebar.opened,
       openSidebar: sidebar.opened,
       withoutAnimation: sidebar.withoutAnimation,
-      mobile: device === 'mobile'
+      mobile: device.value === 'mobile'
     }))
 
     const resizeHandler = throttle(() => {
@@ -61,7 +59,7 @@ export default {
       store.dispatch('app/closeSideBar', { withoutAnimation: false })
     }
 
-    onBeforeMount(() => {
+    onMounted(() => {
       resizeHandler()
       window.addEventListener('resize', resizeHandler)
     })
