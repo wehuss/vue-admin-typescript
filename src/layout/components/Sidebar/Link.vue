@@ -16,7 +16,6 @@ export default defineComponent({
     }
   },
   setup(props) {
-    console.log('props', props, isExternal(props.to))
     const external = computed(() => isExternal(props.to))
     const type = computed(() => (external.value ? 'a' : 'router-link'))
     const linkProps = (to: string) => {

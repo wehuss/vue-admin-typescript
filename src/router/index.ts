@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
       title: 'element-plus',
       icon: 'share'
     },
-    component: () => import('../layout/index.vue')
+    redirect: '/test'
   }
   // {
   // 	path: '/about',

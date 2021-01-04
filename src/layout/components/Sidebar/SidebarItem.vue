@@ -32,7 +32,7 @@
       :index="resolvePath(item.path)"
       popper-append-to-body
     >
-      <el-icons v-if="item?.meta?.icon" icon="item.meta.icon" />
+      <el-icons v-if="item?.meta?.icon" :icon="item.meta.icon" />
       <template #title>
         <span v-if="item?.meta?.title">
           {{ item.meta.title }}
